@@ -2,11 +2,11 @@
 <html>
 <head>
 	<title>MusicTender</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<script src="/socket.io/socket.io.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </head>
 	<style>
 	body
@@ -122,17 +122,17 @@
         $('#upcoming_28').text(data.upcoming[28]);
         $('#upcoming_29').text(data.upcoming[29]);
         $('#upcoming_30').text(data.upcoming[30]);
-        /*$('#user_input_1').text(data.user_input[0]);
+        $('#user_input_1').text(data.user_input[0]);
         $('#user_input_2').text(data.user_input[1]);       
         $('#user_input_3').text(data.user_input[2]);
         $('#user_input_4').text(data.user_input[3]);
-        $('#user_input_5').text(data.user_input[4]);*/
+        $('#user_input_5').text(data.user_input[4]);
       });
     </script>
 	<div class="container center">
 		<div class="row">
 			<div class="col-lg-2"></div>
-			<div class="col-lg-8 border"><h1>STARTUP NAME</h1></div>
+			<div class="col-lg-8 border"><h1>MusicTender</h1></div>
 		</div>
 	</div>
 
@@ -141,9 +141,9 @@
 			<hr>
 		<div class="row">
 			<div class="col-sm-12 margin">
-				<form class="form-inline">
+				<form class="form-inline" >
 					<input type="text" class="form-control" placeholder="Search" id="input">
-				    	<button type="submit" class="btn btn-default">Go!</button>	   
+				    	<button type="submit" class="btn btn-default" onClick="window.location.reload();">Go!</button>	   
 				</form>
 			</div>
 		</div>
@@ -224,6 +224,10 @@
 <script>
 function changetext() {
     document.getElementById("input").value = "name of the song";
+}
+function myfunction(song){
+	console.log(typeof(song));
+	document.getElementById("input").value = song;
 }
 </script>
 
