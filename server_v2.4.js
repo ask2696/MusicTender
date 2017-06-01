@@ -106,7 +106,115 @@ app.get('/index1.html',function(req,res){
 
 });
 
+app.get('/index_mobile.html',function(req,res){
+    //console.log(req);
+    //res.sendFile(__dirname + "/" + "index.html");
+    //console.log("Request:")
+    //var ip = req.clientIp;
+    
+    //console.log("Client's IP" + ip)
+
+    fs.readFile(__dirname + "/" + "index_mobile.html",function(error,data){               
+                    res.writeHead(200, {"Content-Type": "text/html"});
+                    res.write(data, "utf8");
+                    res.end();
+                    });
+
+});
+
 app.post('/index.html',function(request,response){
+
+                    console.log("Got Post!!");
+                    var form = new formidable.IncomingForm();
+                    
+                    var request_info = new Object();
+                    
+                    var dt = new Date();
+                    var dt_now = dt.toJSON();
+                
+                    request_info.tym = dt_now;  
+
+                    
+                    var ip = request.clientIp;
+    
+                    console.log("Request/Client's IP" + ip)
+
+                    request_info.ip_addr = ip;
+
+                    console.log("Date:" + dt_now)
+
+                    form.parse(request,function(err,field){
+
+                        // change input_newsong to LIST
+                        input_newsong = field;
+                        console.log(input_newsong.song1);
+                        input_user = input_newsong.song1;
+
+                        request_info.song_name = input_user;
+                        req_num +=1;
+                        request_info.request_num = req_num; 
+
+                        temp_upcoming_play_display = input_user;
+
+                        if(queue_input_user_upcoming.indexOf(temp_upcoming_play_display) == -1)
+                        {
+                            queue_input_user_upcoming.splice(position, 0, temp_upcoming_play_display);
+                            console.log(" 1 " + queue_input_user_upcoming);
+                            queue_upcoming_play.splice(position, 0, temp_upcoming_play_display);
+                            //console.log(" !!! " + queue_upcoming_play);
+                            
+                            //queue_upcoming_play = queue_upcoming_play.slice(1);  
+                            //console.log("$$$$$")
+                            //console.log(queue_upcoming_play)
+                            //console.log("$$$$$")    
+                            //deleting the input from the list from the end, to avoid repetition
+                            var search_term = input_user;
+                            for(var i = queue_upcoming_play.length-1; i>=0; i--)
+                            {
+                                if(queue_upcoming_play[i] == search_term)
+                                {
+                                    queue_upcoming_play.splice(i,1);
+                                    break;
+                                }
+                            }
+
+                            /*console.log(" ### " + queue_upcoming_play);
+
+                            for(var i = queue_upcoming_play_disp.length-1; i>=0; i--)
+                            {
+                                if(queue_upcoming_play_disp[i] == search_term)
+                                {
+                                    queue_upcoming_play_disp.splice(i,1);
+                                    break;
+                                }
+                            }*/
+
+                            console.log(" 2 " + queue_upcoming_play);
+                            position += 1;
+                            flag = true;
+                        }
+
+
+
+                    fs.readFile(__dirname + "/" + "index.html",function(error,data){               
+                    response.writeHead(200, {"Content-Type": "text/html"});
+                    response.write(data, "utf8");
+                    response.end();
+                    });
+
+                     
+                    request_info_list.push(request_info);
+
+                    fs.appendFile('data_logger.txt', request_info.request_num +" | "+ request_info.song_name + " | " + request_info.tym + " | " + request_info.ip_addr+ "\n" , function (err) {
+                                    if (err) throw err;
+                                    console.log('Saved!');
+                                });
+
+                });
+
+})
+
+app.post('/index_mobile.html',function(request,response){
 
                     console.log("Got Post!!");
                     var form = new formidable.IncomingForm();
@@ -177,7 +285,7 @@ app.post('/index.html',function(request,response){
                             flag = true;
                         }
 
-                    fs.readFile(__dirname + "/" + "index.html",function(error,data){               
+                    fs.readFile(__dirname + "/" + "index_mobile",function(error,data){               
                     response.writeHead(200, {"Content-Type": "text/html"});
                     response.write(data, "utf8");
                     response.end();
@@ -186,7 +294,7 @@ app.post('/index.html',function(request,response){
                      
                     request_info_list.push(request_info);
 
-                    fs.appendFile('data_logger.txt', request_info.request_num +" | "+ request_info.song_name + " | " + request_info.tym + " | " + request_info.ip_addr+ "\n" , function (err) {
+                    fs.appendFile('data_logger_mobile.txt', request_info.request_num +" | "+ request_info.song_name + " | " + request_info.tym + " | " + request_info.ip_addr+ "\n" , function (err) {
                                     if (err) throw err;
                                     console.log('Saved!');
                                 });
@@ -258,21 +366,15 @@ setInterval(function()
         dummy = true;*/
         console.log(position);
         //console.log(queue_upcoming_play_disp)
-        var player_vlc = child_p.exec('vlc Music_files/\"'
-                                        + now_play_display
-                                        + '\" --play-and-exit',
-                                        function(error,stdout,stderr)
-       
-
-        {
+        var player_vlc = child_p.exec('vlc Music_files/\"' + now_play_display + '\" --play-and-exit',function(error,stdout,stderr){
             if(error)
             {
                 console.log("Error code"+error.code);
                 console.log("Error Sig"+error.signal);
             }
 
-            //console.log("Stdout "+stdout);
-            //console.log("Stderr "+stderr);
+            console.log("Stdout "+stdout);
+            console.log("Stderr "+stderr);
             stream_local = 1;
             
             
