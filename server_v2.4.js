@@ -285,7 +285,7 @@ app.post('/index_mobile.html',function(request,response){
                             flag = true;
                         }
 
-                    fs.readFile(__dirname + "/" + "index_mobile",function(error,data){               
+                    fs.readFile(__dirname + "/" + "index_mobile.html",function(error,data){               
                     response.writeHead(200, {"Content-Type": "text/html"});
                     response.write(data, "utf8");
                     response.end();
