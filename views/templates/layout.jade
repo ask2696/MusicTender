@@ -4,7 +4,8 @@ html(lang='en')
         meta(charset='utf-8')
         meta(name='viewport', content='width=device-width,initial-scale=1.0')
         title MusicTender
-        link(rel='stylesheet', href='dist/bootstrap/bootstrap.min.css') 
+        link(rel='stylesheet', href='dist/bootstrap/bootstrap.min.css')
+        block head
     body
         nav.navbar.navbar-default
             .container-fluid
@@ -24,3 +25,9 @@ html(lang='en')
                             a(href='#') ABOUT
                         li 
                             a(href='#') CONTACT US
+        block content
+           
+        script(type='text/javascript', src='dist/jquery/jquery-3.2.1.min.js')
+        script(type='text/javascript', src='dist/bootstrap/bootstrap.min.js')
+            
+        block footer

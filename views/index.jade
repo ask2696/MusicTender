@@ -1,6 +1,29 @@
-include templates/header
-head
+mixin song(songName, imageUrl) 
+    ul.list-group.row
+        li.list-group-item.col-md-1.col-sm-1.col-xs-2 
+            img(src="#{imageUrl}")
+        li.list-group-item.col-md-10.col-sm-10.col-xs-10  #{songName}
+extends templates/layout
+block head
     link(rel='stylesheet', href='css/index.css')
-#org-img
-    img(src='images/nike-Sports-brand-logo.jpg')
-include templates/footer
+block content
+    #org-img
+        img(src='images/nike-Sports-brand-logo.jpg')
+    #songs-nav-menu
+        ul.row.list-group
+            li.col-md-6.col-sm-6.col-xs-6.list-group-item.active#upcoming-song-butt Upcoming songs
+            li.col-md-6.col-sm-6.col-xs-6.list-group-item#upvoted-songs-butt Your Upvotes
+        ul.list-group.song-list#upcoming-song-list
+            +song('upcoming song-1', 'images/green_day.jpg')
+            +song('upcoming song-1', 'images/green_day.jpg')
+            +song('upcoming song-1', 'images/green_day.jpg')
+            +song('upcoming song-1', 'images/green_day.jpg')
+            +song('upcoming song-1', 'images/green_day.jpg')
+        ul.list-group.song-list#upvoted-song-list
+            +song('upvoted song-1', 'images/green_day.jpg')
+            +song('upvoted song-1', 'images/green_day.jpg')
+            +song('upvoted song-1', 'images/green_day.jpg')
+            +song('upvoted song-1', 'images/green_day.jpg')
+            +song('upvoted song-1', 'images/green_day.jpg')
+block footer
+    script(type='text/javascript', src='js/index.js')
