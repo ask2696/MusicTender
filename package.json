@@ -17,7 +17,11 @@
   },
   "homepage": "https://github.com/ask2696/MusicTender#readme",
   "dependencies": {
+<<<<<<< HEAD
     "express": "^4.15.3",
     "jade": "^1.11.0"
+=======
+    "express": "^4.15.3"
+>>>>>>> 383262055ac29a25cf9df75348110446149023c4
   }
 }
