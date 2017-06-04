@@ -1,0 +1,22 @@
+body
+{
+    overflow-x: hidden;
+}
+
+.navbar-default
+{
+    margin: 0px;
+}
+#org-img img
+{
+    width : 100vw;
+    height: 40vh; 
+}
+
+@media only screen and (max-width: 768px) {
+   #org-img img
+    {
+        width : 100vw;
+        height: 30vh; 
+    }
+}
