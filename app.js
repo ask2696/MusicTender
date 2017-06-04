@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // Import modules
 var express  =   require('express'),
     path     =   require('path');
@@ -18,5 +17,3 @@ app.use('/', index);
 app.listen(3000, function(){
     console.log("Server Running on Port 3000");
 });
-=======
->>>>>>> 383262055ac29a25cf9df75348110446149023c4
