@@ -1,8 +1,16 @@
-mixin song(songName, imageUrl) 
+mixin song(songName, imageUrl, artists, album, albumArtists) 
     ul.list-group.row
         li.list-group-item.col-md-1.col-sm-1.col-xs-2 
             img(src="#{imageUrl}")
-        li.list-group-item.col-md-10.col-sm-10.col-xs-10  #{songName}
+        li.list-group-item.col-md-5.col-sm-15.col-xs-10 
+            p Name : #{songName}
+            p Artists : 
+                a #{artists}
+        li.list-group-item.col-md-6.col-sm-3.col-xs-6  
+            p Album : 
+                a #{album}
+            p Album Artists : 
+                a #{albumArtists}
 extends templates/layout
 block head
     link(rel='stylesheet', href='css/index.css')
@@ -14,11 +22,8 @@ block content
             li.col-md-6.col-sm-6.col-xs-6.list-group-item.active#upcoming-song-butt Upcoming songs
             li.col-md-6.col-sm-6.col-xs-6.list-group-item#upvoted-songs-butt Your Upvotes
         ul.list-group.song-list#upcoming-song-list
-            +song('upcoming song-1', 'images/green_day.jpg')
-            +song('upcoming song-1', 'images/green_day.jpg')
-            +song('upcoming song-1', 'images/green_day.jpg')
-            +song('upcoming song-1', 'images/green_day.jpg')
-            +song('upcoming song-1', 'images/green_day.jpg')
+            for song in upcomingSongs
+                +song(song.name, 'images/green_day.jpg', song.artists, song.album.name, song.album.artists)
         ul.list-group.song-list#upvoted-song-list
             +song('upvoted song-1', 'images/green_day.jpg')
             +song('upvoted song-1', 'images/green_day.jpg')

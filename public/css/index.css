@@ -55,29 +55,42 @@ body
 .song-list .list-group
 {
     margin-top: 2px;
+    border-bottom: 2px solid #f1f1f1;
 }
+
 .song-list .list-group .list-group-item
 {
     border-radius : 0px;
     border: 0px;
-    text-align: center;
+    text-align: left;
     user-select: none;
     -moz-user-select: none;
     -webkit-user-select: none;
-    line-height: 50px; 
+    line-height: 50px;
+    padding: 2px;
 }
-.song-list ul li:nth-child(1)
+.song-list .list-group .list-group-item:nth-child(1)
 {
-    padding: 0px;
+    padding: 0px 5px 0px;
     height: 50px;
     position: relative;
     margin: 10px 0px;
     background-color: transparent;
+    box-sizing: border-box;
 }
+
 .song-list ul li img
 {
-    width : 50px;
     height: 50px;
+}
+
+
+.song-list ul li p
+{
+    height: 35px;
+    line-height: 35px;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 @media only screen and (max-width: 768px) {
@@ -85,5 +98,9 @@ body
     {
         width : 100vw;
         height: 30vh; 
+    }
+    .song-list .list-group .list-group-item:nth-child(3)
+    {
+        display: none;
     }
 }

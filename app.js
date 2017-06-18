@@ -1,6 +1,14 @@
 // Import modules
 var express  =   require('express'),
-    path     =   require('path');
+    path     =   require('path'),
+    mongoose =   require('mongoose');
+
+mongoose.Promise = global.Promise;
+var dbConnection = mongoose.connect("mongodb://localhost:27017/MusicTender");
+
+//Import Models
+
+var Song = require('./models/Song.model')
 
 //Import routes
 var index = require('./routes/index');
