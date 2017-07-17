@@ -3,7 +3,7 @@ var express = require('express'),
 
 // import controllers
 
-var indexController = require('./../controllers/indexController');
+var indexController = require('./../controllers/index.controller');
 
 router.get('/', indexController.index);
 
