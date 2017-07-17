@@ -1,16 +1,4 @@
-mixin song(songName, imageUrl, artists, album, albumArtists) 
-    ul.list-group.row
-        li.list-group-item.col-md-1.col-sm-1.col-xs-2 
-            img(src="#{imageUrl}")
-        li.list-group-item.col-md-5.col-sm-15.col-xs-10 
-            p Name : #{songName}
-            p Artists : 
-                a #{artists}
-        li.list-group-item.col-md-6.col-sm-3.col-xs-6  
-            p Album : 
-                a #{album}
-            p Album Artists : 
-                a #{albumArtists}
+include mixins/song 
 extends templates/layout
 block head
     link(rel='stylesheet', href='css/index.css')
@@ -19,8 +7,8 @@ block content
         img(src='images/nike-Sports-brand-logo.jpg')
     #songs-nav-menu
         ul.row.list-group
-            li.col-md-6.col-sm-6.col-xs-6.list-group-item.active#upcoming-song-butt Upcoming songs
-            li.col-md-6.col-sm-6.col-xs-6.list-group-item#upvoted-songs-butt Your Upvotes
+            li.col-xs-6.col-sm-6.col-md-6.list-group-item.active#upcoming-song-butt Upcoming songs
+            li.col-xs-6.col-sm-6.col-md-6.list-group-item#upvoted-songs-butt Your Upvotes
         ul.list-group.song-list#upcoming-song-list
             for song in upcomingSongs
                 +song(song.name, 'images/green_day.jpg', song.artists, song.album.name, song.album.artists)
