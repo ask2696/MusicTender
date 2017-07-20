@@ -1,13 +1,7 @@
 module.exports.getLoginPage = function(req, res) {
-    if (req.isAuthenticated()) {
-        res.redirect('/admin/home');
-    }
-    res.render('admin/admin');
+    res.render('admin/index');
 };
 
-module.exports.getHomePage = function(req, res) { 
-    if (!req.isAuthenticated()) {
-        res.redirect('admin');
-    }
-    res.render('admin/home');
+module.exports.getHomePage = function(req, res) {
+    res.send('Welcome Home');
 };
