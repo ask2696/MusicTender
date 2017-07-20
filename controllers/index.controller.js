@@ -1,12 +1,13 @@
-var songsLib = require('./../lib/songs');
+var songsLib = require('./../lib/song.lib');
 
-exports.index = function(req, res){  
-    var upComingSongsPromise = songsLib.getUpcomingSongsPromise(); //Get Upcoming Songs Promise
-    upComingSongsPromise.then(function(upcomingSongs){
+module.exports.index = function(req, res) {  
+    // Get Upcoming Songs Promise
+    var upComingSongsPromise = songsLib.getUpcomingSongsPromise();
+    upComingSongsPromise.then(function(upcomingSongs) {
         res.render('index', {
-            'upcomingSongs' : upcomingSongs
+            'upcomingSongs': upcomingSongs,
         });
-    }).catch(function(err){
+    }).catch(function(err) {
         console.log(err);
-    })
-}
+    });
+};
