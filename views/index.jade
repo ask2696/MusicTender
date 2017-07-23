@@ -1,8 +1,19 @@
-include mixins/song 
+include mixins/song
+include mixins/header
 extends templates/layout
 block head
     link(rel='stylesheet', href='css/index.css')
 block content
+    +header([
+        {
+            link: "/",
+            title: "HOME",
+        },
+        {
+            link: "/music",
+            title: "BROWSE MUSIC"
+        }
+    ])
     #org-img
         img(src='images/nike-Sports-brand-logo.jpg')
     #songs-nav-menu

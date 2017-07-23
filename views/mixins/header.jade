@@ -1,0 +1,14 @@
+mixin header(navElements)
+    nav.navbar.navbar-default
+        .container-fluid
+            .navbar-header
+                button.navbar-toggle(type='button', data-toggle='collapse', data-target='#myNavbar')
+                    span.icon-bar
+                    span.icon-bar
+                    span.icon-bar
+                a.navbar-brand(href='#') MusicTender
+            .collapse.navbar-collapse#myNavbar
+                ul.nav.navbar-nav.navbar-right
+                    for navElement in navElements
+                        li
+                            a(href="#{navElement.link}") #{navElement.title}
