@@ -1,0 +1,20 @@
+include ./../mixins/header
+extends ./../templates/layout
+
+block head
+    link(rel="stylesheet", href="/css/admin/home.css")
+block content
+    +header([
+        {
+            link: "#",
+            title: "HOME",
+        },
+        {
+            link: "logout",
+            title: "LOGOUT"
+        }
+    ])
+    .container-fluid#player-container
+        .row
+            audio(controls controlsList="nodownload").col-md-offset-2.col-md-8
+                source(src="/music_files/Hamsaro.mp3", type="audio/mpeg")
