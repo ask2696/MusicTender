@@ -2,7 +2,7 @@
 node_modules
 
 # music files 
-music files
+public/music_files
 
 #npm debug log
 npm-debug.log
