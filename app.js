@@ -12,9 +12,6 @@ var passportLib = require('./lib/passport.lib'); // Import passport library
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/MusicTender');
 
-// Import routes
-var index = require('./routes/index');
-var admin = require('./routes/admin');
 var app = express();
 // Logger
 app.use(logger('dev'));
@@ -25,12 +22,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 // App Middleware
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json({}));
+app.use(bodyParser.json());
 app.use(expressSession({secret: 'secret of music'}));
 // Configure passport
 app.use(passport.initialize());
 app.use(passport.session());
 passportLib.passportAuthInit(passport);
+
+// Import routes
+var index = require('./routes/index');
+var admin = require('./routes/admin');
 
 app.use('/', index);
 app.use('/admin', admin);
@@ -38,3 +39,4 @@ app.use('/admin', admin);
 app.listen(3000, function() {
     console.log('Server Running on Port 3000');
 });
+module.exports = app;
