@@ -1,0 +1,17 @@
+include ./mixins/header.jade
+extends ./templates/layout.jade
+
+block head
+    link(rel="stylesheet", href="/css/music.css")
+
+block content
+    +header([
+        {
+            link: "/",
+            title: "HOME",
+        },
+        {
+            link: "/music",
+            title: "BROWSE MUSIC"
+        }
+    ])
